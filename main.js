@@ -1,54 +1,21 @@
-const juan = {
-  name: "Juan",
-  age: 18,
-  approvedCourses: ["Curso 1", "Curso 2", "Curso 3"],
-  addCourse(newCourse) {
-    console.log("this", this);
-    console.log("this.approvedCourses", this.approvedCourses);
-    this.approvedCourses.push(newCourse);
+const obj1 = {
+  a: "a",
+  b: "b",
+  c: {
+    d: "d",
+    e: "e",
   },
 };
 
-// Object.seal(juan);
-Object.freeze(juan);
+const obj2 = {};
+for (prop in obj1) {
+  obj2[prop] = obj1[prop];
+}
 
-console.log(Object.getOwnPropertyDescriptors(juan));
+const obj3 = Object.assign({}, obj1);
+const obj4 = Object.create(obj1);
 
-/* console.log(Object.keys(juan));
-console.log(Object.getOwnPropertyNames(juan));
-console.log(Object.entries(juan)); */
-
-/* Object.defineProperty(juan, "pruebaNASA", {
-  value: "extraterreste",
-  writable: true,
-  enumerable: true,
-  configurable: true,
-}); */
-
-/* Object.defineProperty(juan, "navigator", {
-  value: "Chrome",
-  writable: true,
-  enumerable: false,
-  configurable: true,
-});
-
-Object.defineProperty(juan, "editor", {
-  value: "VSCode",
-  writable: false,
-  enumerable: true,
-  configurable: true,
-});
-
-Object.defineProperty(juan, "terminal", {
-  value: "WSL",
-  writable: true,
-  enumerable: true,
-  configurable: false,
-});
-
-Object.defineProperty(juan, "pruebaNASA", {
-  value: "extraterrestres",
-  writable: false,
-  enumerable: false,
-  configurable: false,
-}); */
+console.log(obj1);
+console.log(obj2);
+console.log(obj3);
+console.log(obj4);
