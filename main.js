@@ -74,15 +74,29 @@ function createStudent({
     facebook,
     approvedCourses,
     learningPaths,
-    changeName(newName) {
+    socialMedia: {
+      twitter,
+      instagram,
+      facebook,
+    },
+    /* changeName(newName) {
       private["_name"] = newName;
     },
     readName() {
       return private["_name"];
+    }, */
+
+    get name() {
+      return private._name;
+    },
+
+    set name(newName) {
+      if (newName.length) private._name = newName;
+      else console.warn("Tu nombre debe de tener al menos un carácter");
     },
   };
 
-  Object.defineProperty(public, "readName", {
+  /* Object.defineProperty(public, "readName", {
     configurable: false,
     writable: false,
   });
@@ -90,7 +104,7 @@ function createStudent({
   Object.defineProperty(public, "changeName", {
     configurable: false,
     writable: false,
-  });
+  }); */
 
   return public;
 }
