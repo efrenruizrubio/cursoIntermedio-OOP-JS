@@ -1,4 +1,4 @@
-const obj1 = {
+/* const obj1 = {
   a: "a",
   b: "b",
   c: {
@@ -46,4 +46,58 @@ function deepCopy(subject) {
     }
   }
   return copySubject;
+} */
+
+function requiredParam(param) {
+  throw new Error("El parámetro " + param + " es obligatorio");
 }
+
+function createStudent({
+  name = requiredParam("name"),
+  email,
+  age,
+  twitter,
+  instagram,
+  facebook,
+  approvedCourses = [],
+  learningPaths = [],
+} = {}) {
+  const private = {
+    _name: name,
+  };
+
+  const public = {
+    email,
+    age,
+    twitter,
+    instagram,
+    facebook,
+    approvedCourses,
+    learningPaths,
+    changeName(newName) {
+      private["_name"] = newName;
+    },
+    readName() {
+      return private["_name"];
+    },
+  };
+
+  Object.defineProperty(public, "readName", {
+    configurable: false,
+    writable: false,
+  });
+
+  Object.defineProperty(public, "changeName", {
+    configurable: false,
+    writable: false,
+  });
+
+  return public;
+}
+
+const juan = createStudent({
+  name: "Juanito",
+  age: 18,
+  email: "juan@juan.com",
+  twitter: "fjuandc",
+});
